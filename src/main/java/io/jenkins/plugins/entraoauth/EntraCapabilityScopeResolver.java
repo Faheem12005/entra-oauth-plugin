@@ -15,7 +15,7 @@ import java.util.Set;
 @Extension
 public class EntraCapabilityScopeResolver extends OAuth2CapabilityScopeResolver {
 
-    static final String GRAPH_DEFAULT_SCOPE = "https://graph.microsoft.com/.default";
+    static final String OUTLOOK_DEFAULT_SCOPE = "https://outlook.office365.com/.default";
 
     /**
      * Set of OAuth2 capabilities supported by Entra OAuth credentials.
@@ -37,6 +37,6 @@ public class EntraCapabilityScopeResolver extends OAuth2CapabilityScopeResolver 
                 return null;
             }
         }
-        return new EntraOAuth2ScopeRequirement(Set.of(GRAPH_DEFAULT_SCOPE));
+        return new EntraOAuth2ScopeRequirement(Set.of(OUTLOOK_DEFAULT_SCOPE));
     }
 }
