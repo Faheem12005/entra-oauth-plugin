@@ -34,11 +34,11 @@ class EntraCapabilityScopeResolverTest {
     }
 
     @Test
-    void resolvesSendEmailToGraphDefaultScope() {
+    void resolvesSendEmailToOutlookDefaultScope() {
         EntraOAuth2ScopeRequirement requirement =
                 resolver.resolveRequirement(List.of(OAuth2ScopeCapability.SEND_EMAIL));
 
-        assertEquals(Set.of(EntraCapabilityScopeResolver.GRAPH_DEFAULT_SCOPE), Set.copyOf(requirement.getScopes()));
+        assertEquals(Set.of(EntraCapabilityScopeResolver.OUTLOOK_DEFAULT_SCOPE), Set.copyOf(requirement.getScopes()));
     }
 
     @Test
@@ -47,9 +47,9 @@ class EntraCapabilityScopeResolverTest {
                 List.of(OAuth2ScopeCapability.SEND_EMAIL));
 
         // client-credentials always exactly one scope, regardless of
-        // how many capabilities were requested, since Graph only accepts ".default"
+        // how many capabilities were requested, since Exchange Online uses one resource ".default" scope
         assertEquals(1, requirement.getScopes().size());
-        assertEquals(EntraCapabilityScopeResolver.GRAPH_DEFAULT_SCOPE, requirement.getScopes().iterator().next());
+        assertEquals(EntraCapabilityScopeResolver.OUTLOOK_DEFAULT_SCOPE, requirement.getScopes().iterator().next());
     }
 
     @Test
@@ -82,7 +82,7 @@ class EntraCapabilityScopeResolverTest {
                     EntraOAuthCredentials.class, List.of(OAuth2ScopeCapability.SEND_EMAIL));
 
             assertEquals(
-                    Set.of(EntraCapabilityScopeResolver.GRAPH_DEFAULT_SCOPE), Set.copyOf(requirement.getScopes()));
+                    Set.of(EntraCapabilityScopeResolver.OUTLOOK_DEFAULT_SCOPE), Set.copyOf(requirement.getScopes()));
         }
 
         @Test
